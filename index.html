@@ -77,6 +77,22 @@
                 <h2>Govt. Registration, Micro Market Analysis & Investment Potential</h2>
                 <p>Guidance on government registration, micro market analysis, and investment opportunities in Hyderabad.</p>
             </div>
+            <div class="block asking-price">
+                <h2>Asking Price Tool</h2>
+                <p>Estimate a competitive asking price based on location and area.</p>
+                <label for="area-input">Area (sq.ft):</label>
+                <input type="number" id="area-input" placeholder="Enter area">
+                <button id="estimate-btn">Estimate Price</button>
+                <p id="estimate-result" style="font-weight:bold;"></p>
+            </div>
+            <div class="block micro-analysis">
+                <h2>Micro Market Analysis</h2>
+                <p>Explore price trends and growth potential of Hyderabad micro markets.</p>
+            </div>
+            <div class="block investment-potential">
+                <h2>Investment Potential</h2>
+                <p>Calculate potential ROI by comparing rental yield and appreciation.</p>
+            </div>
         </section>
     </main>
     <footer>
@@ -94,5 +110,29 @@
             </nav>
         </div>
     </footer>
+<script>
+    async function populateHome() {
+        const res = await fetch('/api/properties');
+        const data = await res.json();
+        const saleEl = document.querySelector('.featured-properties .properties-list');
+        const rentEl = document.querySelector('.rent-properties .properties-list');
+        const oneDayEl = document.querySelector('.one-day-properties');
+        const makeSpan = (p) => `<span style="display:inline-block;margin:0.25rem;padding:0.25rem 0.5rem;background:#ff980033;border-radius:4px;cursor:pointer" onclick="location.href='property.html?id=${p.id}'">${p.title}</span>`;
+        saleEl.innerHTML = data.filter(p=>p.purpose==='sale').slice(0,4).map(makeSpan).join('');
+        rentEl.innerHTML = data.filter(p=>p.purpose==='rent').slice(0,4).map(makeSpan).join('');
+        oneDayEl.insertAdjacentHTML('beforeend', '<div>'+data.filter(p=>p.purpose==='one-day').slice(0,2).map(makeSpan).join('')+'</div>');
+    }
+
+    populateHome();
+
+    document.getElementById('estimate-btn')?.addEventListener('click', ()=>{
+        const area = parseFloat(document.getElementById('area-input').value);
+        if (!area) return;
+        // Simple heuristic based on average price per sqft
+        const avgPricePerSqft = 6500; // demo value
+        const estimate = area * avgPricePerSqft;
+        document.getElementById('estimate-result').textContent = `Estimated Asking Price: ₹${new Intl.NumberFormat().format(estimate)}`;
+    });
+</script>
 </body>
 </html>
