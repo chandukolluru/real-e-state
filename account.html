@@ -45,6 +45,7 @@
                     <button type="submit">Register</button>
                 </form>
             </div>
+            <p id="account-message" style="color:#2d3e50;font-weight:bold;"></p>
         </section>
     </main>
     <footer>
@@ -62,5 +63,55 @@
             </nav>
         </div>
     </footer>
+<script>
+    document.querySelector('.login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        try {
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            const msg = document.getElementById('account-message');
+            if (!res.ok) {
+                msg.textContent = data.error || 'Login failed';
+                msg.style.color = 'red';
+            } else {
+                msg.textContent = `Welcome, ${data.user.name}!`;
+                msg.style.color = 'green';
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+
+    document.querySelector('.register-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        try {
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
+            const data = await res.json();
+            const msg = document.getElementById('account-message');
+            if (!res.ok) {
+                msg.textContent = data.error || 'Registration failed';
+                msg.style.color = 'red';
+            } else {
+                msg.textContent = data.message;
+                msg.style.color = 'green';
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
 </body>
 </html>

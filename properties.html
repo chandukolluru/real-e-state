@@ -25,24 +25,17 @@
     <main>
         <section class="properties-section">
             <h1>Hyderabad Properties</h1>
-            <h2>Featured Properties</h2>
-            <div class="properties-list">
-                <div class="property-card">Banjara Hills Villa</div>
-                <div class="property-card">Gachibowli Apartment</div>
-                <div class="property-card">Jubilee Hills Penthouse</div>
-                <div class="property-card">Kondapur Flat</div>
+            <div id="sale-block">
+                <h2>Featured Properties for Sale</h2>
+                <div class="properties-list" id="sale-list"></div>
             </div>
-            <h2>Rent Properties</h2>
-            <div class="properties-list">
-                <div class="property-card">Madhapur Studio</div>
-                <div class="property-card">Hitech City 2BHK</div>
-                <div class="property-card">Kukatpally Family Home</div>
-                <div class="property-card">Begumpet Office Space</div>
+            <div id="rent-block">
+                <h2>Rent Properties</h2>
+                <div class="properties-list" id="rent-list"></div>
             </div>
-            <h2>One Day Properties</h2>
-            <div class="properties-list">
-                <div class="property-card">Urgent Sale: Manikonda Flat</div>
-                <div class="property-card">Quick Rent: Ameerpet PG</div>
+            <div id="oneday-block">
+                <h2>One Day Properties</h2>
+                <div class="properties-list" id="oneday-list"></div>
             </div>
         </section>
     </main>
@@ -61,5 +54,31 @@
             </nav>
         </div>
     </footer>
+    <script>
+        async function init() {
+            const res = await fetch('/api/properties');
+            const data = await res.json();
+            const categories = {
+                sale: document.getElementById('sale-list'),
+                rent: document.getElementById('rent-list'),
+                'one-day': document.getElementById('oneday-list')
+            };
+            const makeCard = (prop) => {
+                return `<div class="property-card" onclick="location.href='property.html?id=${prop.id}'" style="cursor:pointer">
+                            <img src="${prop.image}" alt="${prop.title}" style="width:100%;height:160px;object-fit:cover;border-radius:6px 6px 0 0;">
+                            <div style="padding:0.5rem">
+                                <strong>${prop.title}</strong><br>
+                                ₹${new Intl.NumberFormat().format(prop.price)}
+                            </div>
+                        </div>`;
+            };
+            data.forEach(p => {
+                if (categories[p.purpose]) {
+                    categories[p.purpose].insertAdjacentHTML('beforeend', makeCard(p));
+                }
+            });
+        }
+        init();
+    </script>
 </body>
 </html>

@@ -1,0 +1,156 @@
+[
+  {
+    "id": 1,
+    "title": "Luxurious Villa in Banjara Hills",
+    "purpose": "sale",
+    "price": 25000000,
+    "area": 4500,
+    "bedrooms": 5,
+    "bathrooms": 6,
+    "location": "Banjara Hills",
+    "image": "https://source.unsplash.com/featured/?luxury,villa"
+  },
+  {
+    "id": 2,
+    "title": "Modern Apartment in Gachibowli",
+    "purpose": "sale",
+    "price": 12000000,
+    "area": 1800,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "location": "Gachibowli",
+    "image": "https://source.unsplash.com/featured/?apartment,modern"
+  },
+  {
+    "id": 3,
+    "title": "Penthouse with City View in Jubilee Hills",
+    "purpose": "sale",
+    "price": 32000000,
+    "area": 5000,
+    "bedrooms": 4,
+    "bathrooms": 5,
+    "location": "Jubilee Hills",
+    "image": "https://source.unsplash.com/featured/?penthouse,cityview"
+  },
+  {
+    "id": 4,
+    "title": "Spacious Flat in Kondapur",
+    "purpose": "sale",
+    "price": 9500000,
+    "area": 1600,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "location": "Kondapur",
+    "image": "https://source.unsplash.com/featured/?flat,interior"
+  },
+  {
+    "id": 5,
+    "title": "Studio Apartment in Madhapur",
+    "purpose": "rent",
+    "price": 28000,
+    "area": 550,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "location": "Madhapur",
+    "image": "https://source.unsplash.com/featured/?studio,apartment"
+  },
+  {
+    "id": 6,
+    "title": "Family Home 2BHK in Hitech City",
+    "purpose": "rent",
+    "price": 45000,
+    "area": 1200,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "location": "Hitech City",
+    "image": "https://source.unsplash.com/featured/?family,home"
+  },
+  {
+    "id": 7,
+    "title": "Cozy Family Home in Kukatpally",
+    "purpose": "rent",
+    "price": 36000,
+    "area": 1400,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "location": "Kukatpally",
+    "image": "https://source.unsplash.com/featured/?cozy,home"
+  },
+  {
+    "id": 8,
+    "title": "Office Space in Begumpet",
+    "purpose": "rent",
+    "price": 90000,
+    "area": 2000,
+    "bedrooms": 0,
+    "bathrooms": 2,
+    "location": "Begumpet",
+    "image": "https://source.unsplash.com/featured/?office,space"
+  },
+  {
+    "id": 9,
+    "title": "Urgent Sale Flat in Manikonda",
+    "purpose": "one-day",
+    "price": 7800000,
+    "area": 1500,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "location": "Manikonda",
+    "image": "https://source.unsplash.com/featured/?apartment,exterior"
+  },
+  {
+    "id": 10,
+    "title": "Quick Rent PG in Ameerpet",
+    "purpose": "one-day",
+    "price": 15000,
+    "area": 400,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "location": "Ameerpet",
+    "image": "https://source.unsplash.com/featured/?pg,room"
+  },
+  {
+    "id": 11,
+    "title": "Lake View Villa in Gandipet",
+    "purpose": "sale",
+    "price": 41000000,
+    "area": 5800,
+    "bedrooms": 6,
+    "bathrooms": 7,
+    "location": "Gandipet",
+    "image": "https://source.unsplash.com/featured/?lake,villa"
+  },
+  {
+    "id": 12,
+    "title": "Budget Flat in Miyapur",
+    "purpose": "sale",
+    "price": 6800000,
+    "area": 1200,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "location": "Miyapur",
+    "image": "https://source.unsplash.com/featured/?budget,flat"
+  },
+  {
+    "id": 13,
+    "title": "Luxury Condo in Hitech City",
+    "purpose": "rent",
+    "price": 110000,
+    "area": 2200,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "location": "Hitech City",
+    "image": "https://source.unsplash.com/featured/?condo,luxury"
+  },
+  {
+    "id": 14,
+    "title": "Commercial Shop in Abids",
+    "purpose": "one-day",
+    "price": 6000000,
+    "area": 800,
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "location": "Abids",
+    "image": "https://source.unsplash.com/featured/?shop,commercial"
+  }
+]
