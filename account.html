@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Hyderabad Real Estate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Hyderabad Realty</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="account-section">
+            <h1>My Account</h1>
+            <div class="account-forms">
+                <form class="login-form">
+                    <h2>Login</h2>
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="login-email" required>
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <form class="register-form">
+                    <h2>Register</h2>
+                    <label for="register-name">Name</label>
+                    <input type="text" id="register-name" name="register-name" required>
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="register-email" required>
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="register-password" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            <p id="account-message" style="color:#2d3e50;font-weight:bold;"></p>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2024 Hyderabad Realty. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+<script>
+    document.querySelector('.login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        try {
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            const msg = document.getElementById('account-message');
+            if (!res.ok) {
+                msg.textContent = data.error || 'Login failed';
+                msg.style.color = 'red';
+            } else {
+                msg.textContent = `Welcome, ${data.user.name}!`;
+                msg.style.color = 'green';
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+
+    document.querySelector('.register-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        try {
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
+            const data = await res.json();
+            const msg = document.getElementById('account-message');
+            if (!res.ok) {
+                msg.textContent = data.error || 'Registration failed';
+                msg.style.color = 'red';
+            } else {
+                msg.textContent = data.message;
+                msg.style.color = 'green';
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
+</body>
+</html>

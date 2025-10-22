@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties - Hyderabad Real Estate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Hyderabad Realty</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="properties-section">
+            <h1>Hyderabad Properties</h1>
+            <div id="sale-block">
+                <h2>Featured Properties for Sale</h2>
+                <div class="properties-list" id="sale-list"></div>
+            </div>
+            <div id="rent-block">
+                <h2>Rent Properties</h2>
+                <div class="properties-list" id="rent-list"></div>
+            </div>
+            <div id="oneday-block">
+                <h2>One Day Properties</h2>
+                <div class="properties-list" id="oneday-list"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2024 Hyderabad Realty. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        async function init() {
+            const res = await fetch('/api/properties');
+            const data = await res.json();
+            const categories = {
+                sale: document.getElementById('sale-list'),
+                rent: document.getElementById('rent-list'),
+                'one-day': document.getElementById('oneday-list')
+            };
+            const makeCard = (prop) => {
+                return `<div class="property-card" onclick="location.href='property.html?id=${prop.id}'" style="cursor:pointer">
+                            <img src="${prop.image}" alt="${prop.title}" style="width:100%;height:160px;object-fit:cover;border-radius:6px 6px 0 0;">
+                            <div style="padding:0.5rem">
+                                <strong>${prop.title}</strong><br>
+                                ₹${new Intl.NumberFormat().format(prop.price)}
+                            </div>
+                        </div>`;
+            };
+            data.forEach(p => {
+                if (categories[p.purpose]) {
+                    categories[p.purpose].insertAdjacentHTML('beforeend', makeCard(p));
+                }
+            });
+        }
+        init();
+    </script>
+</body>
+</html>
